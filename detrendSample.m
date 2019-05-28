@@ -17,7 +17,7 @@ function dtrSignal = detrendSample(signal, lambda, wlength)
 %       doi: 10.1109/10.979357
 
 % Output matrix allocation
-S = size(input);
+S = size(signal);
 dtrSignal = zeros(S);
 
 % Last window size
@@ -36,12 +36,12 @@ end
 
 % Application to main windows
 for i = 1:wlength:(S(1) - wLast)
-    dtrSignal(1*i:i-1+wlength,:) = coeffMain * input(1*i:i-1+wlength,:);
+    dtrSignal(1*i:i-1+wlength,:) = coeffMain * signal(1*i:i-1+wlength,:);
 end
 
 % Application to last window
 if(wLast > 0)
-    dtrSignal(S(1)-wLast+1:end, :) = coeffEnd *  input(S(1)-wLast+1:end, :);
+    dtrSignal(S(1)-wLast+1:end, :) = coeffEnd *  signal(S(1)-wLast+1:end, :);
 end
 end
 
